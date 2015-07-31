@@ -153,23 +153,13 @@ if(instance_exists(obj_grapple)){
             momentum += (key_left + key_right)/20;
         }   
     }
-    if(dist_from_g &gt; obj_grapple.maxTravelDistance + 5){
+    if((dist_from_g &gt; obj_grapple.maxTravelDistance + 5)
+    ||(gamepad_button_check_pressed(0,gp_face1))
+    ||(gamepad_button_check_pressed(0,gp_shoulderr))
+    ||(collision_line(x,y,obj_grapple.x,obj_grapple.y,obj_wall,false,true))){
         ind = instance_nearest(x,y, obj_grapple);
         with(ind){
             instance_destroy();
-        }
-    }else{
-        if(gamepad_button_check_pressed(0,gp_face1)){
-            ind = instance_nearest(x,y, obj_grapple);
-            with(ind){
-                instance_destroy();
-            }
-        }else
-        if(collision_line(x,y,obj_grapple.x,obj_grapple.y,obj_wall,false,true)){
-            ind = instance_nearest(x,y, obj_grapple);
-            with(ind){
-                instance_destroy();
-            }
         }
     }
 }
@@ -418,109 +408,12 @@ y+= vsp;
           <argument>
             <kind>1</kind>
             <string>if(instance_exists(obj_grapple)){
-    draw_set_colour(c_olive);
     draw_line_width(x,y,obj_grapple.x,obj_grapple.y,4);
 }
 draw_self();
 </string>
           </argument>
         </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="88">
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>can_shoot</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>can_shoot</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>obj_grapple</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="9" enumb="87">

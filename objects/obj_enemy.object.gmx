@@ -93,10 +93,12 @@ if (place_meeting(x,y,obj_player))
     }
     else
     {
-        obj_player.health--;
+        obj_player.p_health--;
+        obj_player.hsp -= 5;
+        obj_player.vsp += 5;
         show_debug_message("Player Health:");
         show_debug_message(obj_player.p_health);
-        if(obj_player.health == 0){
+        if(obj_player.p_health == 0){
             show_message("You Lose");
             game_restart();
         }
