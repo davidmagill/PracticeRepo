@@ -148,7 +148,7 @@
     <instance objName="obj_cave_edge" x="96" y="224" name="inst_F2D98B43" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cave_edge" x="96" y="256" name="inst_E6E018A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cave_edge" x="96" y="288" name="inst_C6166B8B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_cave_edge" x="352" y="224" name="inst_7E1DFC17" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_cave_edge" x="352" y="224" name="inst_7E1DFC17" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cave_edge" x="352" y="256" name="inst_BB395739" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cave_edge" x="352" y="288" name="inst_2F819E67" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cave_mid" x="96" y="512" name="inst_20E52C64" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -299,7 +299,7 @@
     <instance objName="obj_floor_mid" x="960" y="512" name="inst_EFA136D4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_floor_mid" x="992" y="512" name="inst_C02C2F27" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_floor_edge" x="64" y="512" name="inst_C7A1B3D6" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_floor_edge" x="64" y="480" name="inst_3450EDE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_floor_edge" x="0" y="480" name="inst_3450EDE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_floor_edge" x="320" y="480" name="inst_6A1DDB6B" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_floor_edge" x="320" y="512" name="inst_F5914382" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_floor_edge" x="832" y="512" name="inst_A3E238C2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -318,6 +318,11 @@
     <instance objName="obj_cave_edge" x="736" y="288" name="inst_641D8D11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_cave_edge" x="896" y="288" name="inst_532D494F" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_floor_edge" x="544" y="288" name="inst_2758A8F5" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_floor_mid" x="64" y="480" name="inst_1A61322E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_floor_mid" x="32" y="480" name="inst_2570894E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_floor_edge" x="512" y="288" name="inst_40BB3B94" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_2" x="192" y="384" name="inst_B514DE69" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_invisible_wall" x="352" y="448" name="inst_4A7A92AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

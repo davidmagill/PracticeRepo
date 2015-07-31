@@ -19,6 +19,7 @@
     <sprite>sprites\locke_walk</sprite>
     <sprite>sprites\locke_swing</sprite>
     <sprite>sprites\locke_cheer</sprite>
+    <sprite>sprites\sp_rope</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -37,7 +38,10 @@
     <object>objects\obj_wall</object>
     <object>objects\obj_powerup</object>
     <object>objects\obj_enemy</object>
+    <object>objects\obj_enemy_2</object>
     <object>objects\obj_grapple</object>
+    <object>objects\obj_invisible_wall</object>
+    <object>objects\obj_rope</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

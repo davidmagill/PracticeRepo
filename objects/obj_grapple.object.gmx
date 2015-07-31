@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -36,7 +36,7 @@ vsp = 0;
 
 total_horizontal_travel_distance = 0;
 total_vertical_travel_distance = 0;
-maxTravelDistance = 125;
+maxTravelDistance = 110;
 
 timeToLive = 10;
 
@@ -63,8 +63,8 @@ collision = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hsp = h_dir * movespeed;
-vsp = v_dir * movespeed;
+            <string>hsp = movespeed * h_dir;
+vsp = movespeed * v_dir;
 
 //Horizontal Collision
 if (place_meeting(x+hsp,y,obj_wall))
@@ -100,10 +100,6 @@ total_horizontal_travel_distance += hsp;
 y += vsp;
 total_vertical_travel_distance += vsp;
 
-if(sqrt(power(total_horizontal_travel_distance,2)
-    +power(total_vertical_travel_distance,2)) &gt; maxTravelDistance){
-        instance_destroy();
-    }
 
 </string>
           </argument>
