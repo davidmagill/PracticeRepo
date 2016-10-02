@@ -6,23 +6,22 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sp_player</sprite>
+    <sprite>sprites\sp_green_block</sprite>
     <sprite>sprites\sp_wall</sprite>
     <sprite>sprites\sp_floor_edge</sprite>
     <sprite>sprites\sp_cave_edge</sprite>
     <sprite>sprites\sp_cave_mid</sprite>
-    <sprite>sprites\sp_player_b</sprite>
+    <sprite>sprites\sp_blue_block</sprite>
     <sprite>sprites\sp_powerup</sprite>
     <sprite>sprites\grapple</sprite>
-    <sprite>sprites\sp_enemy</sprite>
+    <sprite>sprites\sp_red_block</sprite>
     <sprite>sprites\locke_stand</sprite>
     <sprite>sprites\locke_walk</sprite>
     <sprite>sprites\locke_swing</sprite>
     <sprite>sprites\locke_cheer</sprite>
-    <sprite>sprites\sp_rope</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\background0</background>
+    <background>background\practiceBackground</background>
   </backgrounds>
   <paths name="paths"/>
   <shaders name="shaders">
@@ -34,17 +33,19 @@
     <object>objects\obj_floor_edge</object>
     <object>objects\obj_cave_edge</object>
     <object>objects\obj_cave_mid</object>
-    <object>objects\obj_wall</object>
+    <object>objects\wall_mid</object>
+    <object>objects\wall_edge_right</object>
+    <object>objects\wall_edge_left</object>
+    <object>objects\floor_mid</object>
+    <object>objects\floor_edge_left</object>
+    <object>objects\floor_edge_right</object>
     <object>objects\obj_powerup</object>
     <object>objects\obj_enemy</object>
-    <object>objects\obj_enemy_2</object>
     <object>objects\obj_grapple</object>
-    <object>objects\obj_invisible_wall</object>
-    <object>objects\obj_rope</object>
-    <object>objects\gui</object>
+    <object>objects\obj_wall</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\practice_room</room>
+    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

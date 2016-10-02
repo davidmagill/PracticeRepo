@@ -135,7 +135,17 @@ if (place_meeting(x,y+1,obj_wall))
 }else{
     if(jump){
         if(abs(j_momentum + hsp/2) &lt; abs(j_momentum)){
-            j_momentum = j_momentum + hsp/5;
+            //original j_momentum = j_momentum + hsp/5;
+            j_momentum = j_momentum + hsp/3;
+        }
+        if(hsp &gt; 0){
+            if(j_momentum &lt; 0){
+                j_momentum = 0;
+            }
+        }else if(hsp &lt; 0){
+            if(j_momentum &gt; 0){
+                j_momentum = 0;
+            }
         }
         hsp = hsp/1.5 + j_momentum;
     }
@@ -208,6 +218,7 @@ if(g_hooked){
             }    
         }
 
+        
          hsp = (obj_grapple.maxTravelDistance * cos(degtorad(degree+180)))+obj_grapple.x-x;
          vsp = (obj_grapple.maxTravelDistance * sin(degtorad(degree)))+obj_grapple.y-y;
          if(abs(v_dist + vsp) &gt; v_dist){
@@ -234,6 +245,7 @@ if(g_hooked){
             degree += momentum;
          }
          j_momentum = hsp;
+         
          
     }
          
