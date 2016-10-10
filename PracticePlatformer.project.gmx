@@ -24,6 +24,9 @@
     <background>background\practiceBackground</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\room_tile_renderer.gml</script>
+  </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader0.shader</shader>
   </shaders>
@@ -43,9 +46,10 @@
     <object>objects\obj_enemy</object>
     <object>objects\obj_grapple</object>
     <object>objects\obj_wall</object>
+    <object>objects\activate_objects_in_view</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room1</room>
+    <room>rooms\practice_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

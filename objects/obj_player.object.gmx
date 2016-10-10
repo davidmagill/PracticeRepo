@@ -30,12 +30,14 @@ degree_set = false;
 g_hooked = false;
 inAir = false;
 jump = false;
+canJump = true;
 
 degree = 0;
 grav = 0.2;
 hsp = 0;
 vsp = 0;
 
+maxJump = 2;
 movespeed = 4;
 j_momentum = 0;
 momentum = 0;
@@ -119,6 +121,8 @@ if (place_meeting(x,y+1,obj_wall))
 {
     inAir = false;
     jump = false;
+    canJump = true;
+    
     if (!place_meeting(x+hsp,y,obj_wall))
     {
         j_momentum = hsp/2;
@@ -150,7 +154,14 @@ if (place_meeting(x,y+1,obj_wall))
         hsp = hsp/1.5 + j_momentum;
     }
     inAir = true;
+    if(canJump){
+        if(!key_jump == 0){
+            vsp = key_jump * -jumpspeed;
+            canJump = false;
+        }
+    }
 }
+
 if(instance_exists(obj_grapple)){
 
     h_dist = obj_player.x - obj_grapple.x ;
@@ -158,12 +169,11 @@ if(instance_exists(obj_grapple)){
     dist_from_g = point_distance(x,y,obj_grapple.x,obj_grapple.y);
     if(obj_grapple.collision){
         g_hooked = true;
-        
         if(v_dist &gt; 0){
             momentum += (key_left + key_right)/20;
         }   
     }
-    if((dist_from_g &gt; obj_grapple.maxTravelDistance + 5)
+    if((dist_from_g &gt; obj_grapple.maxTravelDistance + 10)
     ||(gamepad_button_check_pressed(0,gp_face1))
     ||(gamepad_button_check_pressed(0,gp_shoulderr))
     ||(collision_line(x,y,obj_grapple.x,obj_grapple.y,obj_wall,false,true))){
@@ -171,7 +181,7 @@ if(instance_exists(obj_grapple)){
         with(ind){
             instance_destroy();
         }
-    }
+    }   
 }
 
 if(!instance_exists(obj_grapple)){
@@ -182,8 +192,6 @@ if(!instance_exists(obj_grapple)){
     gamepad_set_axis_deadzone(0,.15);
     hv = gamepad_axis_value(0,gp_axisrh);
     vv = gamepad_axis_value(0,gp_axisrv);
-    show_debug_message(hv);
-    show_debug_message(vv);
     if(abs(hv) &gt; .15 || abs(vv) &gt; .15){
         if(gamepad_button_check_pressed(0, gp_shoulderr)){
             instance_create(x,y,obj_grapple);
@@ -194,62 +202,77 @@ if(!instance_exists(obj_grapple)){
             obj_grapple.movespeed = 5;
         }
     }
-    
 }
 
 if(g_hooked){
+    canJump = true;
 
     if((dist_from_g &gt;= obj_grapple.maxTravelDistance) || degree_set){
-        if(!degree_set){
-            degree = point_direction(x,y,obj_grapple.x,obj_grapple.y);
-            degree_set = true;
-            if(h_dist &gt; 0){
-                if(sign(vsp) &gt; 0){
-                    momentum = -1*(h_dist/obj_grapple.maxTravelDistance) * vsp;
-                }else{
-                    momentum = (h_dist/obj_grapple.maxTravelDistance) * vsp;
-                }
-            }else{
-                if(sign(vsp) &gt; 0){
-                    momentum = (abs(h_dist/obj_grapple.maxTravelDistance)) * vsp;
-                }else{
-                    momentum = -1 * (abs(h_dist/obj_grapple.maxTravelDistance)) * vsp;
-                }
-            }    
-        }
-
         
-         hsp = (obj_grapple.maxTravelDistance * cos(degtorad(degree+180)))+obj_grapple.x-x;
-         vsp = (obj_grapple.maxTravelDistance * sin(degtorad(degree)))+obj_grapple.y-y;
-         if(abs(v_dist + vsp) &gt; v_dist){
-            if(h_dist &lt; 0){
-                momentum += (abs(h_dist/obj_grapple.maxTravelDistance))/4;
-            }else{
-                momentum += -1 * (abs(h_dist/obj_grapple.maxTravelDistance))/4;
+        if(inAir){
+        
+            if(!degree_set){
+                degree = point_direction(x,y,obj_grapple.x,obj_grapple.y);
+                degree_set = true;
+                if(h_dist &gt; 0){
+                    if(sign(vsp) &gt; 0){
+                        momentum = -1*(h_dist/obj_grapple.maxTravelDistance) * vsp;
+                    }else{
+                        momentum = (h_dist/obj_grapple.maxTravelDistance) * vsp;
+                    }
+                }else{
+                    if(sign(vsp) &gt; 0){
+                        momentum = (abs(h_dist/obj_grapple.maxTravelDistance)) * vsp;
+                    }else{
+                        momentum = -1 * (abs(h_dist/obj_grapple.maxTravelDistance)) * vsp;
+                    }
+                }    
             }
-         }else{
-            if(h_dist &lt; 0){
-                momentum += (abs(h_dist/obj_grapple.maxTravelDistance))/3;
-            }else{
-                momentum += -1 * (abs(h_dist/obj_grapple.maxTravelDistance))/3;
+             hsp = (obj_grapple.maxTravelDistance * cos(degtorad(degree+180)))+obj_grapple.x-x;
+             vsp = (obj_grapple.maxTravelDistance * sin(degtorad(degree)))+obj_grapple.y-y;
+             
+             if(abs(v_dist + vsp) &gt; v_dist){
+                if(h_dist &lt; 0){
+                    momentum += (abs(h_dist/obj_grapple.maxTravelDistance))/4;
+                }else{
+                    momentum += -1 * (abs(h_dist/obj_grapple.maxTravelDistance))/4;
+                }
+             }else{
+                if(h_dist &lt; 0){
+                    momentum += (abs(h_dist/obj_grapple.maxTravelDistance))/3;
+                }else{
+                    momentum += -1 * (abs(h_dist/obj_grapple.maxTravelDistance))/3;
+                }
+             }
+             
+             /*if(abs(h_dist + hsp) &gt;= obj_grapple.maxTravelDistance - 5){
+                momentum *= -1;
+             }*/
+             if(momentum != 0){
+                degree += momentum;
+             }else{
+                momentum = -1 * sign(h_dist) * abs(h_dist/obj_grapple.maxTravelDistance)*3
+                degree += momentum;
+             }
+             j_momentum = hsp;
+         }
+            if(dist_from_g &gt;= obj_grapple.maxTravelDistance){
+                if(obj_grapple.x &gt; obj_player.x){
+                    if(hsp &lt; 0){
+                        hsp = 0;
+                    }
+                }else if(obj_grapple.x &lt; obj_player.x){
+                    if(hsp &gt; 0){
+                        hsp = 0;
+                    }
+                }
             }
-         }
-         
-         /*if(abs(h_dist + hsp) &gt;= obj_grapple.maxTravelDistance - 5){
-            momentum *= -1;
-         }*/
-         if(momentum != 0){
-            degree += momentum;
-         }else{
-            momentum = -1 * sign(h_dist) * abs(h_dist/obj_grapple.maxTravelDistance)*3
-            degree += momentum;
-         }
-         j_momentum = hsp;
-         
          
     }
-         
+        
 }
+
+
 
 //Horizontal Collision
 if (place_meeting(x+hsp,y,obj_wall))
@@ -515,30 +538,6 @@ draw_self();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>movespeed</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_grapple</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>h_dir</string>
           </argument>
           <argument>
@@ -697,30 +696,6 @@ draw_self();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>movespeed</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_grapple</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>h_dir</string>
           </argument>
           <argument>
@@ -860,30 +835,6 @@ draw_self();
           <argument>
             <kind>0</kind>
             <string>y-16</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_grapple</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>movespeed</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5</string>
           </argument>
         </arguments>
       </action>
